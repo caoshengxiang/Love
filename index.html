@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>deliberate lies - interactive DHTML</title>
+	<meta charset="UTF-8">
 <meta name="Author" content="Gerard Ferrandez at http://www.mobanwang.com">
 <meta http-equiv="imagetoolbar" content="no">
 <style type="text/css">
@@ -80,6 +81,10 @@
 		z-index: 30000;
 		padding-left: 12px;
 		cursor: pointer;
+	}
+
+	canvas {
+		/*transform: scale(0.3);*/
 	}
 </style>
 
@@ -227,16 +232,20 @@ var m3D = function () {
 		if ((this.canvas && this.srcImg.complete) || this.img.complete) {
 			if (this.canvas) {
 				/* ---- canvas version ---- */
-				this.w = this.srcImg.width;
-				this.h = this.srcImg.height;
+				// this.w = this.srcImg.width;
+				// this.h = this.srcImg.height;
+			  	this.w = scaleWH(this.srcImg.width, this.srcImg.height).w;
+				this.h = scaleWH(this.srcImg.width, this.srcImg.height).h;
 				this.img.width = this.w;
 				this.img.height = this.h;
 				var context = this.img.getContext("2d");
 				context.drawImage(this.srcImg, 0, 0, this.w, this.h);
 			} else {
 				/* ---- plain image version ---- */
-				this.w = this.img.width;
-				this.h = this.img.height;
+				// this.w = this.img.width;
+				// this.h = this.img.height;
+              	this.w = scaleWH(this.img.width, this.img.height).w;
+              	this.h = scaleWH(this.img.width, this.img.height).w;
 			}
 			/* ---- button loaded ---- */
 			this.but.className += " loaded";
@@ -244,6 +253,20 @@ var m3D = function () {
 		}
 		return false;
 	}
+
+	function scaleWH (w, h) {
+      var scale = w / h
+      var cardinal = 400
+	  if (w < cardinal) {
+	    return {w: w, h: h}
+	  } else {
+		return {
+          w: cardinal,
+		  h: cardinal / scale
+		}
+	  }
+    }
+
 	////////////////////////////////////////////////////////////////////////////
 	/* ==== screen dimensions ==== */
 	var resize = function () {
@@ -346,7 +369,7 @@ var m3D = function () {
 <div id="screen">
 	<div id="command">
 
-		<h1>deliberate lies</h1>
+		<h1>我的大美女和狗狗</h1>
 		 Defiant, stony, deliberate, their lies will not get in my way.
 		<div id="bar"></div>
 	</div>
@@ -358,30 +381,30 @@ var m3D = function () {
 setTimeout(function() {
 	m3D.init(
 		[
-			{ src: 'psb.jpg', url: 'http://www.mobanwang.com/random/', title: 'jump to random script', color: '#fff' },
-			{ src: 'psb (1).jpg' },
-			{ src: 'psb (2).jpg' },
-			{ src: 'psb (3).jpg' },
-			{ src: 'psb (4).jpg' },
-			{ src: 'psb (5).jpg' },
-			{ src: 'psb (6).jpg' },
-			{ src: 'psb (7).jpg' },
-			{ src: 'psb (8).jpg' },
-			{ src: 'psb (9).jpg' },
-			{ src: 'psb (10).jpg' },
-			{ src: 'psb (11).jpg' },
-			{ src: 'psb (12).jpg' },
-			{ src: 'psb (13).jpg' },
-			{ src: 'psb (14).jpg' },
-			{ src: 'psb (15).jpg' },
-			{ src: 'psb (16).jpg' },
-			{ src: 'psb (17).jpg' },
-			{ src: 'psb (18).jpg' },
-			{ src: 'psb (19).jpg' },
-			{ src: 'psb (20).jpg' },
-			{ src: 'psb (21).jpg' },
-			{ src: 'psb (22).jpg' },
-			{ src: 'psb (23).jpg', url: 'http://www.mobanwang.com/random/', color: '#fff' }
+			{ src: '5.jpg', url: 'http://www.mobanwang.com/random/', title: 'my love', color: '#fff' },
+			{ src: '1.jpg' },
+			{ src: '2.jpg' },
+			{ src: '3.jpg' },
+			{ src: '4.jpg' },
+			{ src: '5.jpg' },
+			{ src: '6.jpg' },
+			{ src: '7.jpg' },
+			{ src: '8.jpg' },
+			{ src: '9.jpg' },
+			{ src: '10.jpg' },
+			{ src: '11.jpg' },
+			{ src: '12.jpg' },
+			{ src: '13.jpg' },
+			{ src: '14.jpg' },
+			{ src: '15.jpg' },
+			{ src: '16.jpg' },
+			{ src: '17.jpg' },
+			{ src: '18.jpg' },
+			{ src: '19.jpg' },
+			{ src: '20.jpg' },
+			{ src: '21.jpg' },
+			{ src: '22.jpg' },
+			{ src: '23.jpg', url: 'http://www.mobanwang.com/random/', color: '#fff' }
 		]
 	);
 }, 500);
